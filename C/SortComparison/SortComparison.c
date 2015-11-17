@@ -74,16 +74,25 @@ void selection_sort(int list[],int n){
   int i,j;
   int min; // minimum
 
-  for ( j = 0; j < n-1; j++ ){
+  for ( j = 0; j < n-1; j++ )
+  {
     // assuming that the first element in the array is the min
     min = j;
     // i compares the next thing in the list to the current min
-    for ( i = j+1; i < n; i++ ){
+    for ( i = j+1; i < n; i++ )
+    {
         // if the next element is smaller than min then the element is the new min
-        
+        if ( list[i] < list[min] )
+        {
+            // found new minimum
+        }
+    } // end for loop
+    if( min != j )
+    {
+      swap( list[], min, j );
     }
-  }
-}
+  } // end for loop
+} // end selection_sort
 
 void merge_sort(int list[], int temp[], int n){
   msort_recursive(list, temp, 0, n-1);
@@ -120,6 +129,7 @@ void init_lst(int *l,int n){
   }
 }
 
+
 void self_check(int *list,int n) {
   int i,j,flag=OK,*listp;
 
@@ -129,4 +139,11 @@ void self_check(int *list,int n) {
 
   if (flag == OK) printf("sorted\n");
   else printf("NOT sorted at %d\n",i);
+}
+
+void swap( int list[], int a, int b ){
+    // swaps the values of the in the lists
+    int temp = list[a];
+    list[a] = list[b];
+    list[b] = temp;
 }
